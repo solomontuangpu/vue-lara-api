@@ -22,6 +22,7 @@
 
 <script>
 import { mapGetters } from "vuex"
+import axios from "axios"
 
 export default {
     computed: {
@@ -45,6 +46,9 @@ export default {
 
                         this.$store.dispatch("setToken", json.token);
                         this.$store.dispatch("setAuth", json.auth);
+
+                        axios.defaults.headers.common["Authorization"] =
+                                   "Bearer "+ localStorage.getItem("token");
 
                         this.$router.push("/dashboard")
                     }else{

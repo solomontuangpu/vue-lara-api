@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-        <h3>Dashboard</h3>
+        <h3>Product List</h3>
         <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit dolore libero tempora esse! Harum, veniam in dolore fugiat incidunt eius officiis debitis quam corrupti, sit ullam illo aliquam enim nam.
         </p>
@@ -20,3 +20,4 @@ export default {
 <style>
 
 </style>
+
