@@ -3,7 +3,7 @@ import HomeView from '../views/HomeView.vue'
 import RegisterView from "../views/RegisterView.vue"
 import LoginView from "../views/LoginView.vue"
 import DashboardView from "../views/DashboardView.vue"
-import ProductView from "../views/ProductView.vue"
+import ProductsView from "../views/ProductsView.vue"
 import ProductCreateView from "../views/ProductCreateView.vue"
 
 
@@ -50,9 +50,9 @@ const routes = [
     beforeEnter: [alreadyLogin]
   },
   {
-    path: '/product',
-    name: 'product',
-    component: ProductView,
+    path: '/products',
+    name: 'products',
+    component: ProductsView,
     beforeEnter: [needAuth]
   },
   {

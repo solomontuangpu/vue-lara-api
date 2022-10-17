@@ -4,7 +4,7 @@
             <div class="col-lg-4">
                 <h3 class="">Login Form</h3>
                 <hr>
-                <form action="" @submit.prevent="login" ref="loginForm">
+                <form action="" @submit.prevent="login()" ref="loginForm">
                     <div class="form-floating  mb-3">
                         <input type="email" class="form-control" name="email" id="floatingEmail" placeholder="Email">
                         <label for="floatingEmail">Email</label>

@@ -95,7 +95,7 @@ export default {
                             toast: true,
                             position: 'top-end',
                             showConfirmButton: false,
-                            timer: 3000,
+                            timer: 2000,
                             timerProgressBar: true,
                             didOpen: (toast) => {
                                 toast.addEventListener('mouseenter', Swal.stopTimer)
@@ -113,14 +113,14 @@ export default {
             let formData = new FormData(this.$refs.productCreate);
             axios.post(this.getUrl("products"), formData)
                 .then(res => {
+                     //clearErrorMessage
+                    this.errors = {};
+                    
                     if(res.status === 200){
                         this.showToast("success", res.data.message);
 
                         //clearForm
                         this.$refs.productCreate.reset();
-
-                        //clearErrorMessage
-                        this.errors = {};
                     }
                 })
                 .catch(err => {

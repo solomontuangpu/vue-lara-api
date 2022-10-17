@@ -25,15 +25,39 @@
                     </template>
                     <template v-else>
                         <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                               Product
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li>
+                                    <router-link class="dropdown-item" to="/product/create">
+                                        Product Create
+                                    </router-link>
+                                </li>
+                                <li>
+                                    <router-link class="dropdown-item" to="/products">
+                                        Product List
+                                    </router-link>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                {{ auth.name }}
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="#">Action</a></li>
-                                <li><a class="dropdown-item" href="#">Another action</a></li>
+                                <li>
+                                    <router-link class="dropdown-item" to="/dashboard">
+                                        Dashboard
+                                    </router-link>
+                                </li>
                                 <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item" href="#" 
-                                    @click="logout()">Logout</a></li>
+                                <li>
+                                    <a class="dropdown-item btn" @click="logout()">
+                                        Logout
+                                    </a>
+                                </li>
                             </ul>
                         </li>
                     </template>
@@ -60,24 +84,19 @@ export default {
     },
     methods: {
         logout(){
+            localStorage.removeItem("token");
+            localStorage.removeItem("auth");
+
            let headers = new Headers();
            headers.append("Authorization", "Bearer "+this.token);
            fetch(this.getUrl("logout"), {
                 method: "POST",
                 headers
            }).then(res => res.json())
-                .then(json => {
-                    if(json.success === true){
-
-                        localStorage.removeItem("token");
-                        localStorage.removeItem("auth");
-
-                        this.$store.dispatch("logout");
-                        this.$router.push("/login")
-                    }
-                })
+                .then(json => { if(json.success === true )  this.$store.dispatch("logout") } )
+                .finally(()=> this.$router.push("/login"))
         }
-    }
+    } 
 }
 </script>
 
