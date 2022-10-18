@@ -33,10 +33,11 @@
                                     >
                                         <i class="bi bi-info-circle"></i>
                                     </button>
-                                    <button 
+                                    <router-link
+                                        :to="'product/edit/'+ product.id"
                                         class="btn btn-sm btn-outline-primary">
                                         <i class="bi bi-pencil"></i>
-                                    </button>
+                                    </router-link>
                                     <button 
                                         @click="deleteProduct(product.id)"
                                         class="btn btn-sm btn-outline-primary">
@@ -132,7 +133,7 @@ export default {
             .then(res=> {
                 let currentUrl = this.products.meta.links.find(link => link.active === true).url;
                 this.fetchProducts(currentUrl);
-                this.showToast("success", res.data.message)
+                this.showToast("success", res.data.message);
             })
         }
     },

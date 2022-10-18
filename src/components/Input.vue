@@ -3,6 +3,7 @@
     <input :type="type"  
             :name="name" 
             :id="name" 
+            :value="value"
             :class="{ 'is-invalid' : errors[name] }"
             class="form-control"
         >
@@ -29,6 +30,9 @@
             errors: {
                 type: Object,
                 default: {}
+            },
+            value: {
+                default: null
             }
         },
     }

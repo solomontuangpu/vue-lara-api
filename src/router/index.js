@@ -5,7 +5,7 @@ import LoginView from "../views/LoginView.vue"
 import DashboardView from "../views/DashboardView.vue"
 import ProductsView from "../views/ProductsView.vue"
 import ProductCreateView from "../views/ProductCreateView.vue"
-
+import ProductEditView from "../views/ProductEditView.vue"
 
 import store from '@/store'
 
@@ -65,6 +65,12 @@ const routes = [
     path: '/dashboard',
     name: 'dashboard',
     component: DashboardView,
+    beforeEnter: [needAuth]
+  },
+  {
+    path: '/product/edit/:id',
+    name: 'product.edit',
+    component: ProductEditView,
     beforeEnter: [needAuth]
   }
 ]
