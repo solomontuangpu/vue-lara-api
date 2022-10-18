@@ -57,17 +57,26 @@
                     :stock=productDetail.stock
                 />
 
-                <Pagination 
+                <div class="d-flex justify-content-between">
+                    <Pagination 
                     v-if="products.meta" 
                     @fetchUrl="fetchProducts"
                     :links="products.meta.links"
                      />
+                    
+                     <div class="w-25">
+                            <Search
+                                 @search="search" 
+                            />
+                     </div>
+                </div>
             </div>
        </div>
     </div>
 </template>
 
 <script>
+import Search from '../components/Search.vue'
 import axios from "axios"
 import { mapGetters } from 'vuex';
 
@@ -78,7 +87,7 @@ import Modal from 'bootstrap/js/dist/modal';
 import Swal from 'sweetalert2'
 
 export default {
-    components: { Pagination, Detail },
+    components: { Pagination, Detail, Search },
     data() {
         return {
             products : {},
@@ -91,6 +100,9 @@ export default {
         ]) 
     },
     methods: {
+        search(keyword) {
+            this.fetchProducts(this.getUrl("products?keyword="+ keyword));
+        },
         showToast(color, message){
             const Toast = Swal.mixin({
                             toast: true,
